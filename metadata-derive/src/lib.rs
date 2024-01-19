@@ -59,10 +59,7 @@ fn metadata_derive_macro2(
                 let fields = [#(#field_names),*];
                 let authors = [#(#field_authors),*];
 
-                fields.iter()
-                    .zip(authors.iter())
-                    .map(|(&field, &author)| (field, author))
-                    .collect()
+                fields.into_iter().zip(authors.into_iter()).collect()
             }
         }
     })
