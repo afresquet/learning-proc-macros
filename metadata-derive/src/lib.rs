@@ -75,9 +75,10 @@ fn extract_metadata_field_attrs(
 
     if let syn::Data::Struct(s) = &mut ast.data {
         for field in s.fields.iter_mut() {
-            let field_name = field.ident.as_ref().map(ToString::to_string).unwrap();
-            let attrs: MetaDataFieldAttributes = deluxe::extract_attributes(field)?;
-            field_attrs.insert(field_name, attrs);
+            if let Ok(attrs) = deluxe::extract_attributes(field) {
+                let field_name = field.ident.as_ref().map(ToString::to_string).unwrap();
+                field_attrs.insert(field_name, attrs);
+            };
         }
     }
 

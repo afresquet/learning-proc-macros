@@ -28,7 +28,6 @@ fn foo() {
 struct Bar {
     #[metadata(author = "Alvaro")]
     a: i32,
-    #[metadata(author = "Alvaro")]
     b: bool,
 }
 
